@@ -8,12 +8,12 @@
 
 #import "ViewController.h"
 #import "SetupViewController.h"
+#import "PlayfieldViewController.h"
 #import <Parse/Parse.h>
 @import ParseUI;
 
 
-@interface ViewController ()<PFLogInViewControllerDelegate, PFSignUpViewControllerDelegate>
-
+@interface ViewController ()<MKMapViewDelegate, MKAnnotation, CLLocationManagerDelegate, LocationManagerDelegate, PFLogInViewControllerDelegate, PFSignUpViewControllerDelegate>
 
 @end
 
@@ -42,8 +42,53 @@
 //        
 //        
 //    }];
-
+    
     [self login];
+}
+
++(ViewController *)sharedController
+{
+    static ViewController *sharedController = nil;
+    
+    static dispatch_once_t onceToken;
+    
+    dispatch_once(&onceToken, ^{
+        
+        sharedController = [[ViewController alloc]init];
+    });
+    
+    return sharedController;
+}
+
+-(instancetype)init
+{
+    self = [super init];
+    
+    if (self)
+    {
+        _locationManager = [[CLLocationManager alloc]init];
+        _locationManager.delegate = self;
+        _locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+        _locationManager.distanceFilter = 20;
+    }
+    [_locationManager requestAlwaysAuthorization];
+    return self;
+}
+
+-(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations
+{
+    [self.delegate locationControllerDidUpdateLocation:locations.lastObject];
+    [self setLocation:locations.lastObject];
+}
+
+-(void)locationManager:(CLLocationManager *)manager didEnterRegion:(CLRegion *)region
+{
+    UILocalNotification *notification = [[UILocalNotification alloc]init];
+    
+    notification.alertTitle = @"You have reached the questination!";
+    notification.alertBody = @"Are you ready to continue?";
+    
+    [[UIApplication sharedApplication]presentLocalNotificationNow:notification];
 }
 
 #pragma mark - Login

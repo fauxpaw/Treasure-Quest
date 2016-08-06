@@ -29,6 +29,7 @@
 		4C7D76221D54033900932D3A /* Playfield.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C7D76211D54033900932D3A /* Playfield.m */; };
 		4C7D76251D54044F00932D3A /* Route.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C7D76241D54044F00932D3A /* Route.m */; };
 		4C7D76351D5546F700932D3A /* Objective.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C7D76341D5546F700932D3A /* Objective.m */; };
+		8BF2B1CE1D557F4E0071DE20 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BF2B1CD1D557F4E0071DE20 /* MapKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -79,6 +80,7 @@
 		4C7D76241D54044F00932D3A /* Route.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Route.m; sourceTree = "<group>"; };
 		4C7D76331D5546F700932D3A /* Objective.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Objective.h; sourceTree = "<group>"; };
 		4C7D76341D5546F700932D3A /* Objective.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Objective.m; sourceTree = "<group>"; };
+		8BF2B1CD1D557F4E0071DE20 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,6 +88,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8BF2B1CE1D557F4E0071DE20 /* MapKit.framework in Frameworks */,
 				4C7D76111D534C6D00932D3A /* ParseUI.framework in Frameworks */,
 				4C7D76091D533CDE00932D3A /* Bolts.framework in Frameworks */,
 				4C7D760A1D533CDE00932D3A /* Parse.framework in Frameworks */,
@@ -98,6 +101,7 @@
 		4C7D75E41D53389C00932D3A = {
 			isa = PBXGroup;
 			children = (
+				8BF2B1CD1D557F4E0071DE20 /* MapKit.framework */,
 				4C7D76101D534C6D00932D3A /* ParseUI.framework */,
 				4C7D76071D533CDE00932D3A /* Bolts.framework */,
 				4C7D76081D533CDE00932D3A /* Parse.framework */,

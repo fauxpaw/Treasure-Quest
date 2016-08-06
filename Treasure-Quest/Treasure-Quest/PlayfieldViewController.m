@@ -7,8 +7,14 @@
 //
 
 #import "PlayfieldViewController.h"
+#import "ViewController.h"
 
-@interface PlayfieldViewController ()
+@import Parse;
+@import ParseUI;
+
+@interface PlayfieldViewController () <MKMapViewDelegate, MKAnnotation, LocationManagerDelegate>
+
+@property (weak, nonatomic) IBOutlet MKMapView *mapView;
 
 @end
 
@@ -16,7 +22,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    [self.mapView.layer setCornerRadius:20.0];
+    [self.mapView setDelegate:self];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -24,14 +31,61 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+-(void)setupFinalDestination
+{
+    PFQuery *query = [PFQuery queryWithClassName:@"FinalDestination"];
+    
+    [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
+        if (!error)
+        {
+            [[NSOperationQueue mainQueue]addOperationWithBlock:^{
+                for (id object in objects)
+                {
+                    PFGeoPoint *finalDesintation = object[@"location"];
+                    MKPointAnnotation *newPoint = [[MKPointAnnotation alloc]init];
+                    
+                    CLLocationCoordinate2D newCoordinate = CLLocationCoordinate2DMake(finalDesintation.latitude, finalDesintation.longitude);
+                    [[[ViewController sharedController]locationManager]startMonitoringVisits];
+                    
+                    newPoint.coordinate = newCoordinate;
+                    newPoint.title = object[@"name"];
+                    [self.mapView addAnnotation:newPoint];
+                }
+            }];
+        }
+    }];
 }
-*/
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    [[ViewController sharedController]setDelegate:self];
+    [[[ViewController sharedController]locationManager]startUpdatingLocation];
+}
+
+-(void)locationControllerDidUpdateLocation:(CLLocation *)location
+{
+    [self.mapView setRegion:MKCoordinateRegionMakeWithDistance(location.coordinate, 500.0, 500.0) animated:YES];
+}
+
+-(MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(nonnull id<MKAnnotation>)annotation
+{
+    if ([annotation isKindOfClass:[MKUserLocation class]]) {
+        return nil;
+    }
+    
+    MKPinAnnotationView *annotationView = (MKPinAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:@"annotationView"];
+    
+    if (!annotationView)
+    {
+        annotationView = [[MKPinAnnotationView alloc]initWithAnnotation:annotation reuseIdentifier:@"annotationView"];
+    }
+    
+    annotationView.canShowCallout = YES;
+    
+    return annotationView;
+}
+
 
 @end
