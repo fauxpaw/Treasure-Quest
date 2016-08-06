@@ -10,6 +10,8 @@
 		048DB9461D53F65900604726 /* SetupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 048DB9451D53F65900604726 /* SetupViewController.m */; };
 		048DB9491D54015C00604726 /* PlayfieldViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 048DB9481D54015C00604726 /* PlayfieldViewController.m */; };
 		048DB94C1D5403FE00604726 /* SummaryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 048DB94B1D5403FE00604726 /* SummaryViewController.m */; };
+		048DB94F1D553B0700604726 /* Waiting.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 048DB94E1D553B0700604726 /* Waiting.storyboard */; };
+		048DB9521D5544EE00604726 /* WaitPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 048DB9511D5544EE00604726 /* WaitPageViewController.m */; };
 		4C7D75F21D53389C00932D3A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C7D75F11D53389C00932D3A /* main.m */; };
 		4C7D75F51D53389C00932D3A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C7D75F41D53389C00932D3A /* AppDelegate.m */; };
 		4C7D75F81D53389C00932D3A /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C7D75F71D53389C00932D3A /* ViewController.m */; };
@@ -57,6 +59,9 @@
 		048DB9481D54015C00604726 /* PlayfieldViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayfieldViewController.m; sourceTree = "<group>"; };
 		048DB94A1D5403FE00604726 /* SummaryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SummaryViewController.h; sourceTree = "<group>"; };
 		048DB94B1D5403FE00604726 /* SummaryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SummaryViewController.m; sourceTree = "<group>"; };
+		048DB94E1D553B0700604726 /* Waiting.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Waiting.storyboard; sourceTree = "<group>"; };
+		048DB9501D5544EE00604726 /* WaitPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WaitPageViewController.h; sourceTree = "<group>"; };
+		048DB9511D5544EE00604726 /* WaitPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WaitPageViewController.m; sourceTree = "<group>"; };
 		4C7D75ED1D53389C00932D3A /* Treasure-Quest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Treasure-Quest.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4C7D75F11D53389C00932D3A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		4C7D75F31D53389C00932D3A /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -107,6 +112,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		048DB94D1D553AD600604726 /* Wait WorkFlow */ = {
+			isa = PBXGroup;
+			children = (
+				048DB94E1D553B0700604726 /* Waiting.storyboard */,
+				048DB9501D5544EE00604726 /* WaitPageViewController.h */,
+				048DB9511D5544EE00604726 /* WaitPageViewController.m */,
+			);
+			name = "Wait WorkFlow";
+			sourceTree = "<group>";
+		};
 		4C7D75E41D53389C00932D3A = {
 			isa = PBXGroup;
 			children = (
@@ -133,6 +148,7 @@
 				4C7D762A1D5525F900932D3A /* Shared */,
 				4C7D76281D5525B700932D3A /* Create Workflow */,
 				4C7D76181D53FA1C00932D3A /* Join Workflow */,
+				048DB94D1D553AD600604726 /* Wait WorkFlow */,
 				4C7D75F01D53389C00932D3A /* Supporting Files */,
 			);
 			path = "Treasure-Quest";
@@ -355,6 +371,7 @@
 				4C7D75FD1D53389D00932D3A /* Assets.xcassets in Resources */,
 				4C7D76141D53F5E400932D3A /* Join.storyboard in Resources */,
 				4C7D75FB1D53389D00932D3A /* Main.storyboard in Resources */,
+				048DB94F1D553B0700604726 /* Waiting.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -369,6 +386,7 @@
 				4C7D76251D54044F00932D3A /* Route.m in Sources */,
 				048DB9461D53F65900604726 /* SetupViewController.m in Sources */,
 				4C7D75F81D53389C00932D3A /* ViewController.m in Sources */,
+				048DB9521D5544EE00604726 /* WaitPageViewController.m in Sources */,
 				4C7D761C1D53FD8B00932D3A /* Quest.m in Sources */,
 				4CBE87AB1D55BC8F0034F19A /* LocationController.m in Sources */,
 				4C7D75F51D53389C00932D3A /* AppDelegate.m in Sources */,

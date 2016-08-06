@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="16A270f" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <scenes>
+        <!--Wait Page View Controller-->
+        <scene sceneID="qcL-Co-etM">
+            <objects>
+                <viewController id="6VG-gx-1WK" customClass="WaitPageViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="M4E-E3-mv8"/>
+                        <viewControllerLayoutGuide type="bottom" id="D0f-tZ-7eh"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Sgf-Zi-Kpn">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Quest Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bup-kY-7IX">
+                                <rect key="frame" x="233" y="80" width="134" height="29"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Code" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tiB-mX-YXr">
+                                <rect key="frame" x="271" y="134" width="58" height="29"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qXI-ae-TFa">
+                                <rect key="frame" x="20" y="188" width="560" height="75"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="75" id="Vpi-lQ-X4o"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="tiB-mX-YXr" firstAttribute="centerX" secondItem="Sgf-Zi-Kpn" secondAttribute="centerX" id="5fW-cV-omg"/>
+                            <constraint firstItem="Bup-kY-7IX" firstAttribute="centerX" secondItem="Sgf-Zi-Kpn" secondAttribute="centerX" id="BWt-KK-uKw"/>
+                            <constraint firstItem="qXI-ae-TFa" firstAttribute="centerX" secondItem="Sgf-Zi-Kpn" secondAttribute="centerX" id="NhE-gc-fNq"/>
+                            <constraint firstItem="tiB-mX-YXr" firstAttribute="top" secondItem="Bup-kY-7IX" secondAttribute="bottom" constant="25" id="R9h-TJ-Gjf"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="qXI-ae-TFa" secondAttribute="trailing" id="fAv-sh-RHv"/>
+                            <constraint firstItem="qXI-ae-TFa" firstAttribute="top" secondItem="tiB-mX-YXr" secondAttribute="bottom" constant="25" id="gPY-VJ-Edh"/>
+                            <constraint firstItem="qXI-ae-TFa" firstAttribute="leading" secondItem="Sgf-Zi-Kpn" secondAttribute="leadingMargin" id="pt5-m7-CkQ"/>
+                            <constraint firstItem="Bup-kY-7IX" firstAttribute="top" secondItem="M4E-E3-mv8" secondAttribute="bottom" constant="60" id="w3G-gD-OD4"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="gameCodeLabel" destination="tiB-mX-YXr" id="TUK-6u-5TR"/>
+                        <outlet property="gameDescriptionLabel" destination="qXI-ae-TFa" id="sjq-a3-iNW"/>
+                        <outlet property="questNameLabel" destination="Bup-kY-7IX" id="hCK-V5-FuG"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bZw-df-Sdd" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="327" y="361"/>
+        </scene>
+    </scenes>
+</document>
