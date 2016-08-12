@@ -18,6 +18,8 @@
 @dynamic maxplayers;
 @dynamic code;
 @dynamic objectives;
+@dynamic objectivesCompleted;
+@dynamic objectivesMessaged;
 
 //@synthesize route;
 

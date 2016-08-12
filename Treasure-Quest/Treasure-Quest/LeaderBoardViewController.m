@@ -9,6 +9,8 @@
 #import "LeaderBoardViewController.h"
 //#import <Parse/Parse.h>
 #import "Quest.h"
+#import "TabBarViewController.h"
+#import "Objective.h"
 
 @import Parse;
 
@@ -18,6 +20,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *textSendButton;
 @property (strong, nonatomic) Quest *currentQuest;
 
+@property (weak, nonatomic) IBOutlet UILabel *textfield;
 @end
 
 
@@ -28,9 +31,75 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setup];
+    [self drawLeaderBoard];
 }
+
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [self drawLeaderBoard];
+}
+
 - (IBAction)sendTextButtonPressed:(id)sender {
- 
+    
+}
+-(void)drawLeaderBoard {
+    NSMutableString *leaderBoardText = [[NSMutableString alloc]init];;
+    
+    PFQuery *query= [PFQuery queryWithClassName:@"Quest"];
+    [query whereKey:@"objectId" equalTo:[[PFUser currentUser] objectForKey:@"currentQuestId"]];
+    [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
+        for (Quest *quest in objects)
+        {
+            for (int index = 0; index < quest.players.count; index++) {
+                NSArray *allObjectivesCompleted = [[NSArray alloc] init];
+                allObjectivesCompleted = quest.objectivesCompleted;
+                
+                NSArray *objectivesCompleted = [[NSArray alloc]init];
+                objectivesCompleted = allObjectivesCompleted[index];
+                
+                int innerIndex = 0;
+                while (innerIndex < objectivesCompleted.count ) {
+                    //            Objective *objective = [[Objective alloc] init];
+                    if (![[objectivesCompleted objectAtIndex:innerIndex] boolValue] ){
+                        break;
+                    } else {
+                        innerIndex++;
+                    }
+                    
+                }
+                switch (index) {
+                    case 0:
+                        [leaderBoardText appendString:@"Blue Team"];
+                        break;
+                    case 1:
+                        [leaderBoardText appendString:@"Red Team"];
+                        break;
+                    case 2:
+                        [leaderBoardText appendString:@"Green Team"];
+                        break;
+                    case 3:
+                        [leaderBoardText appendString:@"Orange Team"];
+                        break;
+                    case 4:
+                        [leaderBoardText appendString:@"Purple Team"];
+                        break;
+                    case 5:
+                        [leaderBoardText appendString:@"Black Team"];
+                        break;
+                    default:
+                        break;
+                }
+                [leaderBoardText appendString:[NSString stringWithFormat:@": %d/%lu\n", innerIndex, (unsigned long)objectivesCompleted.count ]];
+                //                NSLog(@"Player %@ completed: %d/%lu/n" );
+                
+            }
+            NSLog(@"%@", leaderBoardText);
+            self.textfield.text = leaderBoardText;
+        }
+        
+    }];
+    
+
 }
 
 - (IBAction)pushTestButtonPressed:(id)sender {

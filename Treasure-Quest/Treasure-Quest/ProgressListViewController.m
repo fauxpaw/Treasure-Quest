@@ -45,6 +45,8 @@
 -(void) setup {
 
    self.objectivesDisplayed = [[NSMutableArray alloc]init];
+    self.objectivesCompleted = [[NSMutableArray alloc]init];
+
     
     PFQuery *query= [PFQuery queryWithClassName:@"Quest"];
     [query whereKey:@"objectId" equalTo:[[PFUser currentUser] objectForKey:@"currentQuestId"]];
@@ -73,8 +75,13 @@
                        
                     }
                     
+
+                    strongSelf.objectivesCompleted = quest.objectivesCompleted[playerNumber.intValue];
+                    strongSelf.objectivesMessaged = quest.objectivesMessaged[playerNumber.intValue];
+
                     ((TabBarViewController *)self.parentViewController).currentQuest = quest;
-                    ((TabBarViewController *)self.parentViewController).currentQuest.objectives = strongSelf.objectivesDisplayed;
+                    // I think this was our crash here - overwriting and array of arrays with an array...
+//                    ((TabBarViewController *)self.parentViewController).currentQuest.objectives = strongSelf.objectivesDisplayed;
                     ((TabBarViewController *)self.parentViewController).currentObjective = strongSelf.objectivesDisplayed[0];
                     [self setupPushChannelForQuest];
                 }
@@ -88,14 +95,23 @@
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-
+//
 
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
     Objective *objective = [[Objective alloc] init];
     objective = self.objectivesDisplayed[indexPath.row];
+    ;
+//Boolean completed = ((TabBarViewController *)self.parentViewController).currentQuest.objectivesCompleted[indexPath.row];
 //    [objective fetchIfNeeded];
-//    NSLog(@"Objective name: %@", [objective objectForKey:@"name"]);
-      cell.textLabel.text = objective.completed ? [NSString stringWithFormat:@"✓ %@",objective.category] :objective.category ;
+//    NSLog(@"Objective name: %@", self.objectivesCompleted[indexPath.row]);
+    
+    if ( [self.objectivesCompleted[indexPath.row] boolValue]){
+        cell.textLabel.text = [NSString stringWithFormat:@"✓ %@",objective.category];
+    } else {
+        cell.textLabel.text = objective.category;
+    }
+    
+//      cell.textLabel.text = (self.objectivesCompleted[indexPath.row] == 1) ? [NSString stringWithFormat:@"✓ %@",objective.category] :objective.category ;
 //    cell.textLabel.text = objective.name;
     return cell;
 

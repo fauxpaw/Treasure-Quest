@@ -56,10 +56,21 @@
                     if ([quest.objectId isEqualToString:self.codeTextField.text]) {
                         self.questName = quest.name;
                         self.players = quest.players;
+                        self.objectivesCompleted = quest.objectivesCompleted;
+                        self.objectivesMessaged = quest.objectivesMessaged;
                         
                         if (![self.players containsObject:[PFUser currentUser].objectId]) {
                             if (self.players.count < quest.maxplayers.intValue) {
                                 [self.players addObject:[PFUser currentUser].objectId];
+                                
+                                NSUInteger count = [[quest.objectives objectAtIndex:0] count];
+                                NSMutableArray *zeroArray = [[NSMutableArray alloc]init];
+                                for (int index ; index < count ; index ++){
+                                    [zeroArray addObject:@NO];
+                                }
+                                
+                                [self.objectivesCompleted addObject:zeroArray ];
+                                [self.objectivesMessaged addObject:zeroArray];
                             } else {
                                 [self alert:@"Game is Full" message:@"The game you are trying to join is full, please create a new one."];
                                 return;

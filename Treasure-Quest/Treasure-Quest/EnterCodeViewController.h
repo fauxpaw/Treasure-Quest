@@ -12,6 +12,8 @@
 
 @property(strong, nonatomic)NSString *questName;
 @property(strong, nonatomic)NSMutableArray *players;
+@property(strong, nonatomic)NSMutableArray *objectivesMessaged;
+@property(strong, nonatomic)NSMutableArray *objectivesCompleted;
 
 
 @end

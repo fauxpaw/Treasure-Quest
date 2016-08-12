@@ -26,7 +26,7 @@
                                         <rect key="frame" x="0.0" y="28" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="6Ie-wp-lna" id="cOZ-Oo-Cb0">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -142,34 +142,24 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="M1H-uF-ZMr">
-                                <rect key="frame" x="140" y="285" width="320" height="30"/>
-                                <state key="normal" title="Button"/>
-                                <connections>
-                                    <action selector="pushTestButtonPressed:" destination="ETA-WN-YQb" eventType="touchUpInside" id="FRu-qP-urH"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bgj-bH-ywO">
-                                <rect key="frame" x="277" y="323" width="46" height="30"/>
-                                <state key="normal" title="Button"/>
-                                <connections>
-                                    <action selector="sendTextButtonPressed:" destination="ETA-WN-YQb" eventType="touchUpInside" id="XUn-96-fjA"/>
-                                </connections>
-                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="6" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OXI-pS-eTx">
+                                <rect key="frame" x="0.0" y="107" width="600" height="335"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="Bgj-bH-ywO" firstAttribute="centerX" secondItem="hY0-jp-KRY" secondAttribute="centerX" id="A8h-xs-hQG"/>
-                            <constraint firstItem="M1H-uF-ZMr" firstAttribute="leading" secondItem="hY0-jp-KRY" secondAttribute="leading" constant="140" id="PfC-MB-faG"/>
-                            <constraint firstItem="M1H-uF-ZMr" firstAttribute="centerY" secondItem="hY0-jp-KRY" secondAttribute="centerY" id="PyO-gt-7ws"/>
-                            <constraint firstItem="M1H-uF-ZMr" firstAttribute="centerX" secondItem="hY0-jp-KRY" secondAttribute="centerX" id="boF-C3-JaA"/>
-                            <constraint firstItem="Bgj-bH-ywO" firstAttribute="top" secondItem="M1H-uF-ZMr" secondAttribute="bottom" constant="8" id="kCe-bo-hd9"/>
+                            <constraint firstItem="OXI-pS-eTx" firstAttribute="centerX" secondItem="hY0-jp-KRY" secondAttribute="centerX" id="2bb-hv-ybu"/>
+                            <constraint firstItem="OXI-pS-eTx" firstAttribute="width" secondItem="hY0-jp-KRY" secondAttribute="width" id="5jC-Mt-6dk"/>
+                            <constraint firstItem="OXI-pS-eTx" firstAttribute="top" secondItem="mfK-6X-c8u" secondAttribute="bottom" constant="87" id="pXQ-Im-TiD"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Leaderboard" image="crown" id="9WT-fg-1Dx"/>
                     <connections>
                         <outlet property="pushTestButton" destination="hY0-jp-KRY" id="7OT-cC-d3A"/>
-                        <outlet property="textSendButton" destination="Bgj-bH-ywO" id="tax-X6-ch0"/>
+                        <outlet property="textfield" destination="OXI-pS-eTx" id="dwk-y8-kef"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ilp-Pi-YrV" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -233,7 +223,7 @@
     </scenes>
     <resources>
         <image name="confetti" width="960" height="640"/>
-        <image name="crown" width="256" height="256"/>
+        <image name="crown" width="32" height="32"/>
         <image name="heart" width="36" height="36"/>
         <image name="list" width="34" height="38"/>
         <image name="star" width="32" height="37"/>

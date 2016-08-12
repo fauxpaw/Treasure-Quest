@@ -93,6 +93,8 @@
     NSLog(@"URL query: %@", [url query]);
     
     PFQuery *query= [PFQuery queryWithClassName:@"Quest"];
+    [query whereKey:@"objectId" equalTo:[url query]];
+
     [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
         if (!error){
             [[NSOperationQueue mainQueue] addOperationWithBlock:^{
@@ -101,14 +103,29 @@
                     if ([quest.objectId isEqualToString:[url query]]) {
                         NSString *questName = quest.name;
                         NSMutableArray *players = quest.players;
+                        NSMutableArray *objectivesCompleted = quest.objectivesCompleted;
+                        NSMutableArray *objectivesMessaged = quest.objectivesMessaged;
+
                         
                         //********** NEED TO ADD A CHECK TO MAKE SURE EXCESS USERS DON'T JOIN **********//
                         if (![players containsObject:[PFUser currentUser].objectId]) {
                             [players addObject:[PFUser currentUser].objectId];
+                            
+                            NSUInteger count = [[quest.objectives objectAtIndex:0] count];
+                            NSMutableArray *zeroArray = [[NSMutableArray alloc]init];
+                            for (int index ; index < count ; index ++){
+                                [zeroArray addObject:@NO];
+                            }
+                            
+                            [objectivesCompleted addObject:zeroArray ];
+                            [objectivesMessaged addObject:zeroArray];
                         }
                         
                         PFObject *updateQuest = [PFObject objectWithoutDataWithClassName:@"Quest" objectId:quest.objectId];
                         updateQuest[@"players"] = players;
+                        updateQuest[@"objectivesCompleted"] = objectivesCompleted;
+                        updateQuest[@"objectivesMessaged"] = objectivesCompleted;
+
                         [[PFUser currentUser]setObject:quest.objectId forKey:@"currentQuestId"];
                         [[PFUser currentUser] saveInBackground ];
                         

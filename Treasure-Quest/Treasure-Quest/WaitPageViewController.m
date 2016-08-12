@@ -187,6 +187,7 @@
 
 - (void)parseQuery {
     PFQuery *query= [PFQuery queryWithClassName:@"Quest"];
+    [query whereKey:@"objectId" equalTo:[[PFUser currentUser] objectForKey:@"currentQuestId"]];
     __weak typeof (self) weakSelf = self;
     
     [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {

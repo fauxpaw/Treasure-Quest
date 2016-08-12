@@ -15,6 +15,9 @@
 @property (strong, nonatomic) Quest *currentQuest;
 @property (strong, nonatomic) Objective *currentObjective;
 @property (strong, nonatomic) NSMutableArray *objectivesDisplayed;
+@property (strong, nonatomic) NSMutableArray *objectivesCompleted;
+@property (strong, nonatomic) NSMutableArray *objectivesMessaged;
+
 
 
 @end

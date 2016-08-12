@@ -116,27 +116,40 @@
     [currentPlayers addObject:[PFUser currentUser].objectId];
     
     quest[@"players"] = currentPlayers;
+    int count = self.objectives.intValue;
     
     NSMutableArray *objectives = [[NSMutableArray alloc]init];
     objectives = [Objective verifyDistanceRange:self.creatorObjectives players:self.players.intValue];
     quest[@"objectives"] = objectives;
     
+    NSMutableArray *zeroArray = [[NSMutableArray alloc]init];
+    for (int index ; index < count ; index ++){
+        [zeroArray addObject:@NO];
+    }
+    NSMutableArray *objectivesCompleted = [[NSMutableArray alloc]init];
+    [objectivesCompleted addObject:zeroArray];
+     quest[@"objectivesCompleted"] = objectivesCompleted;
+    NSMutableArray *objectivesMessaged = [[NSMutableArray alloc]init];
+    [objectivesMessaged addObject:zeroArray];
+     quest[@"objectivesMessaged"] = objectivesMessaged;
 
     
     [quest saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
         if (!error) {
-     
+            [[PFUser currentUser]setObject:quest.objectId forKey:@"currentQuestId"];
+            [[PFUser currentUser] saveInBackground];
+            
             WaitPageViewController *viewController = [[UIStoryboard storyboardWithName:@"Waiting" bundle:nil] instantiateViewControllerWithIdentifier:@"waitingStoryboard"];
 
             NSLog(@"Saved successfully");
             viewController.questName = self.questName;
             viewController.gameCode = quest.objectId;
+
             [[self.view viewWithTag:12] stopAnimating];
             
             [self.navigationController pushViewController:viewController animated:YES];
 //            NSLog(@"Current user: %@, created questid: %@", [PFUser currentUser].username, quest.objectId);
-            [[PFUser currentUser]setObject:quest.objectId forKey:@"currentQuestId"];
-            [[PFUser currentUser] saveInBackground];
+
             
         } else {
             [[self.view viewWithTag:12] stopAnimating];

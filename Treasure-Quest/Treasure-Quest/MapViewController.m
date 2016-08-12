@@ -58,17 +58,22 @@
 }
 
 -(void)setupObjectiveAnnotations {
-
+    
     NSUInteger index = 0;
 
+    NSNumber *playerNumber = [NSNumber numberWithInt:(int)([((TabBarViewController *)self.parentViewController).currentQuest.players indexOfObject:[PFUser currentUser].objectId])];
+    
+    NSArray *objectives = [[NSArray alloc]init];
+    objectives = [((TabBarViewController *)self.parentViewController).currentQuest.objectives objectAtIndex:playerNumber.intValue];
+    
     Objective *current = [[Objective alloc]init];
-    current = ((TabBarViewController *)self.parentViewController).currentQuest.objectives[index];
+    current = objectives[index];
 
-    while (current.completed == YES && index < ((TabBarViewController *)self.parentViewController).currentQuest.objectives.count) {
+    while (current.completed == YES && index < objectives.count) {
         NSLog(@"completed: %@", current.name);
         index++;
 
-        if(index == ((TabBarViewController *)self.parentViewController).currentQuest.objectives.count){
+        if(index == objectives.count){
             NSLog(@"end of array reached");
             return;
         }
@@ -79,7 +84,7 @@
         newPoint.title = current.name;
         [self.mapView addAnnotation:newPoint];
 
-        current = ((TabBarViewController *)self.parentViewController).currentQuest.objectives[index];
+        current = objectives[index];
 
     }
 
@@ -210,13 +215,24 @@
  
     NSUInteger index = 0;
     ((TabBarViewController *)self.parentViewController).currentObjective.completed = YES;
+//    Quest *quest = ((TabBarViewController *)self.parentViewController).currentQuest;
+
+    NSNumber *playerNumber = [NSNumber numberWithInt:(int)([((TabBarViewController *)self.parentViewController).currentQuest.players indexOfObject:[PFUser currentUser].objectId])];
 
     NSArray *objectives = [[NSArray alloc]init];
-    objectives = ((TabBarViewController *)self.parentViewController).currentQuest.objectives;
+    objectives = [((TabBarViewController *)self.parentViewController).currentQuest.objectives objectAtIndex:playerNumber.intValue];
+    
+    NSMutableArray *objectivesCompleted = [[NSMutableArray alloc]init];
+    objectivesCompleted = [((TabBarViewController *)self.parentViewController).currentQuest.objectivesCompleted objectAtIndex:playerNumber.intValue];
+    
+    NSMutableArray *objectivesMessaged = [[NSMutableArray alloc]init];
+    objectivesMessaged = [((TabBarViewController *)self.parentViewController).currentQuest.objectivesMessaged objectAtIndex:playerNumber.intValue];
 
-    while (index < ((TabBarViewController *)self.parentViewController).currentQuest.objectives.count) {
-        Objective *objective = [objectives objectAtIndex: index];
-        if (objective.completed == NO){
+
+    while (index < objectives.count) {
+//        Objective *objective = [objectives objectAtIndex: index];
+        Boolean test = [[objectivesCompleted objectAtIndex:index] boolValue];
+        if (![[objectivesCompleted objectAtIndex:index] boolValue] ){
             break;
         }
         else {
@@ -225,7 +241,7 @@
         
     }
 
-    if (index == ((TabBarViewController *)self.parentViewController).currentQuest.objectives.count){
+    if (index == objectives.count){
         NSLog(@"end of the line");
         if(((TabBarViewController *)self.parentViewController).currentObjective.messageSent == NO ) {
             [self WinnerFound];
@@ -236,7 +252,7 @@
         return;
     }
 
-    ((TabBarViewController *)self.parentViewController).currentObjective = ((TabBarViewController *)self.parentViewController).currentQuest.objectives[index];
+    ((TabBarViewController *)self.parentViewController).currentObjective = objectives[index];
 
     //    NSLog(@"Objective complete! Next objective is objective %@", self.tabbar.currentObjective.name);
     
@@ -245,14 +261,42 @@
     
     // Let's only send this message once per objective.
     if(((TabBarViewController *)self.parentViewController).currentObjective.messageSent == NO ) {
-        NSString *message = [NSString stringWithFormat:@"%@ has reached goal #%i!!", [PFUser currentUser].username, (int)index ];
+        NSString *message = [NSString stringWithFormat:@"%@ has reached goal #%i!!", [PFUser currentUser].username, (int)index + 1 ];
         [self questPushNotification:message];
         ((TabBarViewController *)self.parentViewController).currentObjective.messageSent = YES;
         
     }
-
-    //    [((TabBarViewController *)self.parentViewController).currentObjective save];
+    NSLog(@"saving Objective: %@", ((TabBarViewController *)self.parentViewController).currentObjective.objectId);
+        [((TabBarViewController *)self.parentViewController).currentObjective save];
     
+    // Let's save it in the new way
+    [objectivesCompleted replaceObjectAtIndex:index withObject:@YES];
+    [((TabBarViewController *)self.parentViewController).currentQuest.objectivesCompleted replaceObjectAtIndex:playerNumber.intValue withObject:objectivesCompleted];
+    
+    NSLog(@"completedArray: %@", [((TabBarViewController *)self.parentViewController).currentQuest.objectivesCompleted objectAtIndex:playerNumber.intValue]);
+
+    
+    [((TabBarViewController *)self.parentViewController).currentQuest save];
+    
+    PFObject *updateQuest = [PFObject objectWithoutDataWithClassName:@"Quest" objectId:[[PFUser currentUser] objectForKey:@"currentQuestId"]];
+    
+    NSMutableArray *allObjectivesCompleted = [[NSMutableArray alloc]init];
+//    allObjectivesCompleted = ((TabBarViewController *)self.parentViewController).currentQuest.objectivesCompleted;
+    
+    
+    updateQuest[@"objectivesCompleted"] = allObjectivesCompleted;
+   
+    [[NSOperationQueue mainQueue]addOperationWithBlock:^{
+        
+        [updateQuest saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+            if(!error) {
+                NSLog(@"Saved successfully @ Objective Completed");
+            } else {
+                NSLog(@"%@", error);
+            }
+        }];
+    }];
+
 }
 
 -(void) setUpRegion: (Objective *)objective {

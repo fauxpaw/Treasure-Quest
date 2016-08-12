@@ -19,8 +19,11 @@
 @property (strong, nonatomic) NSString *info;
 @property (strong, nonatomic) Player *creator;
 @property (strong, nonatomic) NSMutableArray *players;
+
 @property (strong, nonatomic) NSNumber *maxplayers;
 //@property (strong, nonatomic) Route *route;
 @property (strong, nonatomic) NSMutableArray *objectives;
+@property (strong, nonatomic) NSMutableArray *objectivesCompleted;
+@property (strong, nonatomic) NSMutableArray *objectivesMessaged;
 
 @end
