@@ -58,9 +58,13 @@
 }
 
 - (void)setupViewController {
-    self.questNameLabel.text = self.questName;
-    self.gameCodeLabel.text = [NSString stringWithFormat:@"Code: %@", self.gameCode];
-    self.gameDescriptionLabel.text = self.gameDescription;
+    [UIView animateWithDuration:1.0 animations:^{
+        self.questNameLabel.text = self.questName;
+        self.questNameLabel.layer.opacity = 1.0;
+        self.gameCodeLabel.text = [NSString stringWithFormat:@"Code: %@", self.gameCode];
+        self.gameCodeLabel.layer.opacity = 1.0;
+        self.gameDescriptionLabel.text = self.gameDescription;
+        self.gameDescriptionLabel.layer.opacity = 1.0;    }];
 
     int players = [self.maxPlayers intValue];
     
@@ -122,6 +126,7 @@
         switch(i){
             case 1:
                 if (currentTeam == i) {
+                    self.userTeam.hidden = NO;
                     self.userTeam.text = @"Blue Team";
                     self.userImage.image = [UIImage imageNamed:@"blueTeam"];
                 }
@@ -130,6 +135,7 @@
                 break;
             case 2:
                 if (currentTeam == i) {
+                    self.userTeam.hidden = NO;
                     self.userTeam.text = @"Red Team";
                     self.userImage.image = [UIImage imageNamed:@"redTeam"];
                 }
@@ -138,6 +144,7 @@
                 break;
             case 3:
                 if (currentTeam == i) {
+                    self.userTeam.hidden = NO;
                     self.userTeam.text = @"Green Team";
                     self.userImage.image = [UIImage imageNamed:@"greenTeam"];
                 }
@@ -146,6 +153,7 @@
                 break;
             case 4:
                 if (currentTeam == i) {
+                    self.userTeam.hidden = NO;
                     self.userTeam.text = @"Orange Team";
                     self.userImage.image = [UIImage imageNamed:@"orangeTeam"];
                 }
@@ -154,6 +162,7 @@
                 break;
             case 5:
                 if (currentTeam == i) {
+                    self.userTeam.hidden = NO;
                     self.userTeam.text = @"Purple Team";
                     self.userImage.image = [UIImage imageNamed:@"purpleTeam"];
                 }
@@ -162,6 +171,7 @@
                 break;
             case 6:
                 if (currentTeam == i) {
+                    self.userTeam.hidden = NO;
                     self.userTeam.text = @"Black Team";
                     self.userImage.image = [UIImage imageNamed:@"blackTeam"];
                 }

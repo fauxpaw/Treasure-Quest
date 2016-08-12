@@ -65,15 +65,18 @@
     
 }
 
+
+
 -(void)locationManager:(CLLocationManager *)manager didEnterRegion:(CLRegion *)region{
-    NSLog(@"User Did Enter Region");
+    [self.delegate userDidEnterObjectiveRegion:region];
+
+    NSLog(@"User Did Enter Region from location manager");
     
     UILocalNotification *notification = [[UILocalNotification alloc]init];
     notification.alertTitle = @"You have entered a region";
     notification.alertBody = @"🐺 My emoji game is stronk";
     
     [[UIApplication sharedApplication]presentLocalNotificationNow:notification];
-    [self.delegate userDidEnterObjectiveRegion:region];
     
 }
 

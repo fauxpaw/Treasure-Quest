@@ -6,7 +6,7 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--Progress List View Controller-->
+        <!--Quests-->
         <scene sceneID="2pi-nB-eJa">
             <objects>
                 <viewController storyboardIdentifier="ProgressListViewController" id="T8t-l2-98F" customClass="ProgressListViewController" sceneMemberID="viewController">
@@ -26,7 +26,7 @@
                                         <rect key="frame" x="0.0" y="28" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="6Ie-wp-lna" id="cOZ-Oo-Cb0">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -41,7 +41,7 @@
                             <constraint firstItem="iOY-3x-IHi" firstAttribute="top" secondItem="3Mf-lX-bY7" secondAttribute="bottom" id="znU-Ah-UfC"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" systemItem="more" id="csP-lf-z1x"/>
+                    <tabBarItem key="tabBarItem" title="Quests" image="list" id="csP-lf-z1x"/>
                     <connections>
                         <outlet property="tableView" destination="3Mf-lX-bY7" id="DuJ-TZ-jYi"/>
                     </connections>
@@ -50,7 +50,7 @@
             </objects>
             <point key="canvasLocation" x="1665" y="308"/>
         </scene>
-        <!--Map View Controller-->
+        <!--Map-->
         <scene sceneID="LOS-vM-XoD">
             <objects>
                 <viewController id="26P-hV-pd3" customClass="MapViewController" sceneMemberID="viewController">
@@ -74,7 +74,7 @@
                             <constraint firstAttribute="trailingMargin" secondItem="nDk-RJ-Wg2" secondAttribute="trailing" constant="-20" id="cK7-dW-fls"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" systemItem="search" id="pAy-MH-TnR"/>
+                    <tabBarItem key="tabBarItem" title="Map" image="heart" id="pAy-MH-TnR"/>
                     <connections>
                         <outlet property="mapView" destination="nDk-RJ-Wg2" id="ajI-ss-8ne"/>
                     </connections>
@@ -83,7 +83,54 @@
             </objects>
             <point key="canvasLocation" x="774" y="1167"/>
         </scene>
-        <!--Leader Board View Controller-->
+        <!--Winner View Controller-->
+        <scene sceneID="88b-6S-dDl">
+            <objects>
+                <viewController id="aDb-9d-JH5" customClass="WinnerViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Zry-aT-vR2"/>
+                        <viewControllerLayoutGuide type="bottom" id="eHb-PP-nYx"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="CyO-ua-SVS">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="confetti" translatesAutoresizingMaskIntoConstraints="NO" id="Zne-k5-yZN">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="WINNER!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JB3-og-yHh">
+                                <rect key="frame" x="179" y="210" width="142" height="42"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="35"/>
+                                <color key="textColor" red="1" green="0.21587940855625865" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You are the Treasure Quest Master!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uX2-9j-pLx">
+                                <rect key="frame" x="93" y="260" width="314" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <color key="textColor" red="0.1428886353969574" green="0.045439742505550385" blue="0.90972614288330078" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Zne-k5-yZN" firstAttribute="leading" secondItem="JB3-og-yHh" secondAttribute="trailing" constant="-321" id="Uqe-hf-mC1"/>
+                            <constraint firstItem="uX2-9j-pLx" firstAttribute="top" secondItem="JB3-og-yHh" secondAttribute="bottom" constant="8" symbolic="YES" id="WAK-Ud-pt8"/>
+                            <constraint firstItem="Zne-k5-yZN" firstAttribute="leading" secondItem="uX2-9j-pLx" secondAttribute="trailing" constant="-407" id="cTh-sE-tX5"/>
+                            <constraint firstItem="Zne-k5-yZN" firstAttribute="leading" secondItem="CyO-ua-SVS" secondAttribute="leading" id="eIa-5Q-yfM"/>
+                            <constraint firstAttribute="trailing" secondItem="Zne-k5-yZN" secondAttribute="trailing" id="ewG-AE-5zc"/>
+                            <constraint firstItem="Zne-k5-yZN" firstAttribute="top" secondItem="JB3-og-yHh" secondAttribute="bottom" constant="-252" id="jgk-uv-y3A"/>
+                            <constraint firstItem="Zne-k5-yZN" firstAttribute="top" secondItem="CyO-ua-SVS" secondAttribute="top" id="n9g-wV-AHC"/>
+                            <constraint firstItem="eHb-PP-nYx" firstAttribute="top" secondItem="uX2-9j-pLx" secondAttribute="bottom" constant="319" id="nbx-Iy-2PD"/>
+                            <constraint firstItem="Zne-k5-yZN" firstAttribute="bottom" secondItem="eHb-PP-nYx" secondAttribute="top" id="re7-tq-zEw"/>
+                            <constraint firstItem="uX2-9j-pLx" firstAttribute="leading" secondItem="Zne-k5-yZN" secondAttribute="leading" constant="93" id="tIW-bM-03C"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Plq-j5-qbQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="774" y="1913"/>
+        </scene>
+        <!--Leaderboard-->
         <scene sceneID="QrQ-cM-g4x">
             <objects>
                 <viewController id="ETA-WN-YQb" customClass="LeaderBoardViewController" sceneMemberID="viewController">
@@ -119,7 +166,7 @@
                             <constraint firstItem="Bgj-bH-ywO" firstAttribute="top" secondItem="M1H-uF-ZMr" secondAttribute="bottom" constant="8" id="kCe-bo-hd9"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" systemItem="topRated" id="9WT-fg-1Dx"/>
+                    <tabBarItem key="tabBarItem" title="Leaderboard" image="crown" id="9WT-fg-1Dx"/>
                     <connections>
                         <outlet property="pushTestButton" destination="hY0-jp-KRY" id="7OT-cC-d3A"/>
                         <outlet property="textSendButton" destination="Bgj-bH-ywO" id="tax-X6-ch0"/>
@@ -173,7 +220,7 @@
                             <constraint firstAttribute="trailingMargin" secondItem="vDF-fy-UnU" secondAttribute="trailing" constant="-20" id="wpJ-h3-UTY"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Players" id="Zpt-OY-bhq"/>
+                    <tabBarItem key="tabBarItem" title="Players" image="star" id="Zpt-OY-bhq"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="mapView" destination="vDF-fy-UnU" id="9F9-tF-E9X"/>
@@ -184,4 +231,11 @@
             <point key="canvasLocation" x="1618" y="1167"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="confetti" width="960" height="640"/>
+        <image name="crown" width="256" height="256"/>
+        <image name="heart" width="36" height="36"/>
+        <image name="list" width="34" height="38"/>
+        <image name="star" width="32" height="37"/>
+    </resources>
 </document>
