@@ -138,9 +138,9 @@
         annotationView = [[MKPinAnnotationView alloc]initWithAnnotation:annotation reuseIdentifier:@"annotationView"];
     }
 
-    annotationView.canShowCallout = YES;
-    UIButton *calloutButton = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
-    annotationView.rightCalloutAccessoryView = calloutButton;
+//    annotationView.canShowCallout = YES;
+    
+    
     return annotationView;
 }
 
@@ -242,7 +242,7 @@
     for (CLRegion *monitored in [manager monitoredRegions])
         [manager stopMonitoringForRegion:monitored];
     
-    objective.range = @50;
+    objective.range = @30;
     NSLog(@"Dis mah range bruh: %@", objective.range);
 
     CLLocationCoordinate2D coord = CLLocationCoordinate2DMake(objective.latitude, objective.longitude);
@@ -290,6 +290,19 @@
 
 -(void)userDidEnterObjectiveRegion:(CLRegion *)region{
     
+    MKPointAnnotation *completedAnno = [[MKPointAnnotation alloc]init];
+    [completedAnno setCoordinate:CLLocationCoordinate2DMake(((TabBarViewController *)self.parentViewController).currentObjective.latitude, ((TabBarViewController *)self.parentViewController).currentObjective.longitude)];
+    
+    MKAnnotationView *completedView = [[MKAnnotationView alloc]initWithAnnotation:completedAnno reuseIdentifier:@"completed"];
+    completedView.canShowCallout = YES;
+    
+    
+    UIButton *calloutButton = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
+    UITapGestureRecognizer *calloutTap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(completeCurrentObjective)];
+    completedView.leftCalloutAccessoryView = calloutButton;
+    [completedView addGestureRecognizer:calloutTap];
+    
+    [self.mapView addAnnotation:completedAnno];
     [self completeCurrentObjective];
     
 }
