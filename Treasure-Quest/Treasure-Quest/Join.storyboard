@@ -6,7 +6,7 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--Progress List View Controller-->
+        <!--Quests-->
         <scene sceneID="2pi-nB-eJa">
             <objects>
                 <viewController storyboardIdentifier="ProgressListViewController" id="T8t-l2-98F" customClass="ProgressListViewController" sceneMemberID="viewController">
@@ -41,7 +41,7 @@
                             <constraint firstItem="iOY-3x-IHi" firstAttribute="top" secondItem="3Mf-lX-bY7" secondAttribute="bottom" id="znU-Ah-UfC"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" systemItem="more" id="csP-lf-z1x"/>
+                    <tabBarItem key="tabBarItem" title="Quests" image="list" id="csP-lf-z1x"/>
                     <connections>
                         <outlet property="tableView" destination="3Mf-lX-bY7" id="DuJ-TZ-jYi"/>
                     </connections>
@@ -50,7 +50,7 @@
             </objects>
             <point key="canvasLocation" x="1665" y="308"/>
         </scene>
-        <!--Map View Controller-->
+        <!--Map-->
         <scene sceneID="LOS-vM-XoD">
             <objects>
                 <viewController id="26P-hV-pd3" customClass="MapViewController" sceneMemberID="viewController">
@@ -74,7 +74,7 @@
                             <constraint firstAttribute="trailingMargin" secondItem="nDk-RJ-Wg2" secondAttribute="trailing" constant="-20" id="cK7-dW-fls"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" systemItem="search" id="pAy-MH-TnR"/>
+                    <tabBarItem key="tabBarItem" title="Map" image="heart" id="pAy-MH-TnR"/>
                     <connections>
                         <outlet property="mapView" destination="nDk-RJ-Wg2" id="ajI-ss-8ne"/>
                     </connections>
@@ -130,7 +130,7 @@
             </objects>
             <point key="canvasLocation" x="774" y="1913"/>
         </scene>
-        <!--Leader Board View Controller-->
+        <!--Leaderboard-->
         <scene sceneID="QrQ-cM-g4x">
             <objects>
                 <viewController id="ETA-WN-YQb" customClass="LeaderBoardViewController" sceneMemberID="viewController">
@@ -166,7 +166,7 @@
                             <constraint firstItem="Bgj-bH-ywO" firstAttribute="top" secondItem="M1H-uF-ZMr" secondAttribute="bottom" constant="8" id="kCe-bo-hd9"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" systemItem="topRated" id="9WT-fg-1Dx"/>
+                    <tabBarItem key="tabBarItem" title="Leaderboard" image="crown" id="9WT-fg-1Dx"/>
                     <connections>
                         <outlet property="pushTestButton" destination="hY0-jp-KRY" id="7OT-cC-d3A"/>
                         <outlet property="textSendButton" destination="Bgj-bH-ywO" id="tax-X6-ch0"/>
@@ -220,7 +220,7 @@
                             <constraint firstAttribute="trailingMargin" secondItem="vDF-fy-UnU" secondAttribute="trailing" constant="-20" id="wpJ-h3-UTY"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Players" id="Zpt-OY-bhq"/>
+                    <tabBarItem key="tabBarItem" title="Players" image="star" id="Zpt-OY-bhq"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="mapView" destination="vDF-fy-UnU" id="9F9-tF-E9X"/>
@@ -233,5 +233,9 @@
     </scenes>
     <resources>
         <image name="confetti" width="960" height="640"/>
+        <image name="crown" width="256" height="256"/>
+        <image name="heart" width="36" height="36"/>
+        <image name="list" width="34" height="38"/>
+        <image name="star" width="32" height="37"/>
     </resources>
 </document>
