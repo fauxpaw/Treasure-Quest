@@ -52,6 +52,7 @@
     [[[LocationController sharedController]locationManager]startUpdatingLocation];
     [[[LocationController sharedController] locationManager]startUpdatingHeading];
     [self setupObjectiveAnnotations];
+    [self setUpRegion:((TabBarViewController *)self.parentViewController).currentObjective];
     self.mapView.camera.altitude = 250;
     
 }
@@ -95,13 +96,14 @@
     self.mapView.camera.heading = self.currentHeading;
     self.mapView.camera.pitch = 60;
     self.mapView.camera.altitude = 250;
-    NSLog(@"you done moved");
+//    NSLog(@"you done moved");
 //    self.mapView.camera.centerCoordinate = location.coordinate;
     CLLocation *locationPointer = [[CLLocation alloc]initWithLatitude:((TabBarViewController *)self.parentViewController).currentObjective.latitude longitude:((TabBarViewController *)self.parentViewController).currentObjective.longitude];
     [self calculateAngleToNewObjective:location objectiveLocation:locationPointer];
     self.currentUserLocation = location;
     [self calculateAngleToNewObjective:self.currentUserLocation objectiveLocation:locationPointer];
     [self changeUserAnnotationColor:self.userPin];
+    [self distanceToObjective];
 
 }
 
@@ -118,6 +120,7 @@
 
 //   NSLog(@"User Heading: %f   Angle to next: %f", self.currentHeading, self.angleToNextObjective);
     [self changeUserAnnotationColor:self.userPin];
+    [self distanceToObjective];
 
 }
 
@@ -204,6 +207,9 @@
 }
 
 -(void)completeCurrentObjective {
+    
+    
+    
     NSUInteger index = 0;
     ((TabBarViewController *)self.parentViewController).currentObjective.completed = YES;
 //    [((TabBarViewController *)self.parentViewController).currentObjective save];
@@ -216,7 +222,10 @@
         if (objective.completed == NO){
             break;
         }
-        index++;
+        else {
+           index++;
+        }
+        
     }
 
     if (index == ((TabBarViewController *)self.parentViewController).currentQuest.objectives.count){
@@ -228,6 +237,7 @@
     ((TabBarViewController *)self.parentViewController).currentObjective = ((TabBarViewController *)self.parentViewController).currentQuest.objectives[index];
 
     //    NSLog(@"Objective complete! Next objective is objective %@", self.tabbar.currentObjective.name);
+    
     [self setupObjectiveAnnotations];
     [self setUpRegion:((TabBarViewController *)self.parentViewController).currentObjective];
     NSString *message = [NSString stringWithFormat:@"%@ has reached goal #%i!!", [PFUser currentUser].username, (int)index ];
@@ -239,10 +249,11 @@
     
     CLLocationManager *manager = [[LocationController sharedController]locationManager];
     
-    for (CLRegion *monitored in [manager monitoredRegions])
-        [manager stopMonitoringForRegion:monitored];
+//    for (CLRegion *monitored in [manager monitoredRegions]) {
+//        [manager stopMonitoringForRegion:monitored];
+//    }
     
-    objective.range = @30;
+    objective.range = @35;
     NSLog(@"Dis mah range bruh: %@", objective.range);
 
     CLLocationCoordinate2D coord = CLLocationCoordinate2DMake(objective.latitude, objective.longitude);
@@ -290,6 +301,8 @@
 
 -(void)userDidEnterObjectiveRegion:(CLRegion *)region{
     
+    NSLog(@"User entered region from mapviewcontroller");
+    
     MKPointAnnotation *completedAnno = [[MKPointAnnotation alloc]init];
     [completedAnno setCoordinate:CLLocationCoordinate2DMake(((TabBarViewController *)self.parentViewController).currentObjective.latitude, ((TabBarViewController *)self.parentViewController).currentObjective.longitude)];
     
@@ -306,6 +319,41 @@
     [self completeCurrentObjective];
     
 }
+
+-(void)distanceToObjective{
+    
+    CLLocation *objectiveLocation = [[CLLocation alloc]initWithLatitude:((TabBarViewController *)self.parentViewController).currentObjective.latitude longitude:((TabBarViewController *)self.parentViewController).currentObjective.longitude];
+    
+    if ([self.currentUserLocation distanceFromLocation:objectiveLocation] <= 35) {
+        
+        NSLog(@"User entered region from mapviewcontroller");
+        
+        MKPointAnnotation *completedAnno = [[MKPointAnnotation alloc]init];
+        [completedAnno setCoordinate:CLLocationCoordinate2DMake(((TabBarViewController *)self.parentViewController).currentObjective.latitude, ((TabBarViewController *)self.parentViewController).currentObjective.longitude)];
+        
+        MKAnnotationView *completedView = [[MKAnnotationView alloc]initWithAnnotation:completedAnno reuseIdentifier:@"completed"];
+        completedView.canShowCallout = YES;
+        
+        
+        UIButton *calloutButton = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
+        UITapGestureRecognizer *calloutTap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(completeCurrentObjective)];
+        completedView.leftCalloutAccessoryView = calloutButton;
+        [completedView addGestureRecognizer:calloutTap];
+        
+        [self.mapView addAnnotation:completedAnno];
+        [self completeCurrentObjective];
+        
+    
+        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Congratulations!"
+                                                                                 message:@"You found the current objective!"
+                                                                          preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *actionOk = [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:nil];
+        [alertController addAction:actionOk];
+        [self presentViewController:alertController animated:YES completion:nil];
+        
+    }
+    
+};
 
 -(void)WinnerFound{
     
