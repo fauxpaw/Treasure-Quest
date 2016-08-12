@@ -74,7 +74,7 @@
                             <constraint firstAttribute="trailingMargin" secondItem="nDk-RJ-Wg2" secondAttribute="trailing" constant="-20" id="cK7-dW-fls"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Map" image="heart" id="pAy-MH-TnR"/>
+                    <tabBarItem key="tabBarItem" title="Map" image="star" id="pAy-MH-TnR"/>
                     <connections>
                         <outlet property="mapView" destination="nDk-RJ-Wg2" id="ajI-ss-8ne"/>
                     </connections>
@@ -188,7 +188,6 @@
                     <connections>
                         <segue destination="T8t-l2-98F" kind="relationship" relationship="viewControllers" id="3uQ-mw-l4S"/>
                         <segue destination="26P-hV-pd3" kind="relationship" relationship="viewControllers" id="k92-4f-sr3"/>
-                        <segue destination="ETA-WN-YQb" kind="relationship" relationship="viewControllers" id="ug3-Ua-9nP"/>
                         <segue destination="Eih-H2-GUE" kind="relationship" relationship="viewControllers" id="yiS-vC-m25"/>
                     </connections>
                 </tabBarController>
@@ -220,7 +219,7 @@
                             <constraint firstAttribute="trailingMargin" secondItem="vDF-fy-UnU" secondAttribute="trailing" constant="-20" id="wpJ-h3-UTY"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Players" image="star" id="Zpt-OY-bhq"/>
+                    <tabBarItem key="tabBarItem" title="Players" image="crown" id="Zpt-OY-bhq"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="mapView" destination="vDF-fy-UnU" id="9F9-tF-E9X"/>
@@ -233,8 +232,7 @@
     </scenes>
     <resources>
         <image name="confetti" width="960" height="640"/>
-        <image name="crown" width="256" height="256"/>
-        <image name="heart" width="36" height="36"/>
+        <image name="crown" width="32" height="32"/>
         <image name="list" width="34" height="38"/>
         <image name="star" width="32" height="37"/>
     </resources>
