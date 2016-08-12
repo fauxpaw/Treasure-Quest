@@ -207,12 +207,9 @@
 }
 
 -(void)completeCurrentObjective {
-    
-    
-    
+ 
     NSUInteger index = 0;
     ((TabBarViewController *)self.parentViewController).currentObjective.completed = YES;
-//    [((TabBarViewController *)self.parentViewController).currentObjective save];
 
     NSArray *objectives = [[NSArray alloc]init];
     objectives = ((TabBarViewController *)self.parentViewController).currentQuest.objectives;
@@ -230,7 +227,12 @@
 
     if (index == ((TabBarViewController *)self.parentViewController).currentQuest.objectives.count){
         NSLog(@"end of the line");
-        [self WinnerFound];
+        if(((TabBarViewController *)self.parentViewController).currentObjective.messageSent == NO ) {
+            [self WinnerFound];
+            ((TabBarViewController *)self.parentViewController).currentObjective.messageSent = YES;
+            
+        }
+        
         return;
     }
 
@@ -240,8 +242,16 @@
     
     [self setupObjectiveAnnotations];
     [self setUpRegion:((TabBarViewController *)self.parentViewController).currentObjective];
-    NSString *message = [NSString stringWithFormat:@"%@ has reached goal #%i!!", [PFUser currentUser].username, (int)index ];
-    [self questPushNotification:message];
+    
+    // Let's only send this message once per objective.
+    if(((TabBarViewController *)self.parentViewController).currentObjective.messageSent == NO ) {
+        NSString *message = [NSString stringWithFormat:@"%@ has reached goal #%i!!", [PFUser currentUser].username, (int)index ];
+        [self questPushNotification:message];
+        ((TabBarViewController *)self.parentViewController).currentObjective.messageSent = YES;
+        
+    }
+
+    //    [((TabBarViewController *)self.parentViewController).currentObjective save];
     
 }
 

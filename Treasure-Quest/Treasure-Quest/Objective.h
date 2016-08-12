@@ -18,6 +18,7 @@
 @property (strong, nonatomic) NSString *category;
 @property (strong, nonatomic) NSNumber *range;
 @property Boolean completed;
+@property Boolean messageSent;
 //@property CLLocation *location;
 @property double latitude;
 @property double longitude;

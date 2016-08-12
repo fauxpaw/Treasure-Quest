@@ -19,6 +19,7 @@
 @dynamic info;
 @dynamic category;
 @dynamic completed;
+@dynamic messageSent;
 //@dynamic location;
 @dynamic range;
 @dynamic latitude;
@@ -45,6 +46,7 @@
     newObjective.info = info;
     newObjective.category = category;
     newObjective.completed = NO;
+    newObjective.messageSent = NO;
     //newObjective.location = [[CLLocation alloc]initWithLatitude:lat longitude:lon];
     newObjective.latitude = lat;
     newObjective.longitude = lon;
