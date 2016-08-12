@@ -14,6 +14,7 @@
 -(void)locationControllerDidUpdateLocation:(CLLocation *)location;
 -(void)locationControllerDidUpdateHeading:(CLHeading *)heading;
 -(void)userDidEnterObjectiveRegion:(CLRegion *)region;
+-(void)monitoringDidFail:(CLRegion *)region;
 
 @end
 
