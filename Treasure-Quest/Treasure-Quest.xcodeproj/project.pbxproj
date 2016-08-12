@@ -41,6 +41,7 @@
 		699942FF1D5BC78A00735F9F /* TabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 699942FE1D5BC78A00735F9F /* TabBarViewController.m */; };
 		699943011D5BF76600735F9F /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 699943001D5BF76600735F9F /* AudioToolbox.framework */; };
 		699943041D5D231B00735F9F /* PlayerMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 699943031D5D231B00735F9F /* PlayerMapViewController.m */; };
+		8B9DB0EB1D5D4CFC00B2DDAA /* WinnerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B9DB0EA1D5D4CFC00B2DDAA /* WinnerViewController.m */; };
 		8BF2B1D41D567CBD0071DE20 /* JSONParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BF2B1D31D567CBD0071DE20 /* JSONParser.m */; };
 		8BF2B1D71D567DC10071DE20 /* FoursquareAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BF2B1D61D567DC10071DE20 /* FoursquareAPI.m */; };
 		8BF2B1D91D56A0F70071DE20 /* AFNetworking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BF2B1D81D56A0F70071DE20 /* AFNetworking.framework */; };
@@ -116,6 +117,8 @@
 		699943001D5BF76600735F9F /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		699943021D5D22F400735F9F /* PlayerMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerMapViewController.h; sourceTree = "<group>"; };
 		699943031D5D231B00735F9F /* PlayerMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerMapViewController.m; sourceTree = "<group>"; };
+		8B9DB0E91D5D4CFC00B2DDAA /* WinnerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WinnerViewController.h; sourceTree = "<group>"; };
+		8B9DB0EA1D5D4CFC00B2DDAA /* WinnerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WinnerViewController.m; sourceTree = "<group>"; };
 		8BF2B1D21D567CBD0071DE20 /* JSONParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONParser.h; sourceTree = "<group>"; };
 		8BF2B1D31D567CBD0071DE20 /* JSONParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONParser.m; sourceTree = "<group>"; };
 		8BF2B1D51D567DC10071DE20 /* FoursquareAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FoursquareAPI.h; sourceTree = "<group>"; };
@@ -232,6 +235,8 @@
 				4C7D76371D55A7D800932D3A /* MapViewController.m */,
 				4C7D76391D55A7E700932D3A /* LeaderBoardViewController.h */,
 				4C7D763A1D55A7E700932D3A /* LeaderBoardViewController.m */,
+				8B9DB0E91D5D4CFC00B2DDAA /* WinnerViewController.h */,
+				8B9DB0EA1D5D4CFC00B2DDAA /* WinnerViewController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -388,9 +393,7 @@
 				TargetAttributes = {
 					4C7D75EC1D53389C00932D3A = {
 						CreatedOnToolsVersion = 7.3.1;
-						DevelopmentTeam = 8ZT3NZA445;
-						DevelopmentTeam = ABJU8Z7J96;
-						DevelopmentTeam = NXQBD8W8TS;
+						DevelopmentTeam = 9EE26NTZPB;
 						SystemCapabilities = {
 							com.apple.Maps.iOS = {
 								enabled = 1;
@@ -453,6 +456,7 @@
 				4C7D75F21D53389C00932D3A /* main.m in Sources */,
 				4C7D76381D55A7D800932D3A /* MapViewController.m in Sources */,
 				699943041D5D231B00735F9F /* PlayerMapViewController.m in Sources */,
+				8B9DB0EB1D5D4CFC00B2DDAA /* WinnerViewController.m in Sources */,
 				04594DFD1D5A8C04007AAAB6 /* CountDownViewController.m in Sources */,
 				4C7D761F1D5400A900932D3A /* Player.m in Sources */,
 				4C7D76171D53FA1700932D3A /* ProgressListViewController.m in Sources */,
@@ -584,8 +588,7 @@
 				);
 				INFOPLIST_FILE = "Treasure-Quest/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.derekgraham.treasurequest;
-				PRODUCT_BUNDLE_IDENTIFIER = com.sweeney.treasurequest;
+				PRODUCT_BUNDLE_IDENTIFIER = com.champagne.treasurequest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};
@@ -604,8 +607,7 @@
 				);
 				INFOPLIST_FILE = "Treasure-Quest/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.derekgraham.treasurequest;
-				PRODUCT_BUNDLE_IDENTIFIER = com.sweeney.treasurequest;
+				PRODUCT_BUNDLE_IDENTIFIER = com.champagne.treasurequest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};

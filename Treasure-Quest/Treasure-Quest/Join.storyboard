@@ -26,7 +26,7 @@
                                         <rect key="frame" x="0.0" y="28" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="6Ie-wp-lna" id="cOZ-Oo-Cb0">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -82,6 +82,53 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qYR-rX-TQS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="774" y="1167"/>
+        </scene>
+        <!--Winner View Controller-->
+        <scene sceneID="88b-6S-dDl">
+            <objects>
+                <viewController id="aDb-9d-JH5" customClass="WinnerViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Zry-aT-vR2"/>
+                        <viewControllerLayoutGuide type="bottom" id="eHb-PP-nYx"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="CyO-ua-SVS">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="confetti" translatesAutoresizingMaskIntoConstraints="NO" id="Zne-k5-yZN">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="WINNER!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JB3-og-yHh">
+                                <rect key="frame" x="179" y="210" width="142" height="42"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="35"/>
+                                <color key="textColor" red="1" green="0.21587940855625865" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You are the Treasure Quest Master!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uX2-9j-pLx">
+                                <rect key="frame" x="93" y="260" width="314" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <color key="textColor" red="0.1428886353969574" green="0.045439742505550385" blue="0.90972614288330078" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Zne-k5-yZN" firstAttribute="leading" secondItem="JB3-og-yHh" secondAttribute="trailing" constant="-321" id="Uqe-hf-mC1"/>
+                            <constraint firstItem="uX2-9j-pLx" firstAttribute="top" secondItem="JB3-og-yHh" secondAttribute="bottom" constant="8" symbolic="YES" id="WAK-Ud-pt8"/>
+                            <constraint firstItem="Zne-k5-yZN" firstAttribute="leading" secondItem="uX2-9j-pLx" secondAttribute="trailing" constant="-407" id="cTh-sE-tX5"/>
+                            <constraint firstItem="Zne-k5-yZN" firstAttribute="leading" secondItem="CyO-ua-SVS" secondAttribute="leading" id="eIa-5Q-yfM"/>
+                            <constraint firstAttribute="trailing" secondItem="Zne-k5-yZN" secondAttribute="trailing" id="ewG-AE-5zc"/>
+                            <constraint firstItem="Zne-k5-yZN" firstAttribute="top" secondItem="JB3-og-yHh" secondAttribute="bottom" constant="-252" id="jgk-uv-y3A"/>
+                            <constraint firstItem="Zne-k5-yZN" firstAttribute="top" secondItem="CyO-ua-SVS" secondAttribute="top" id="n9g-wV-AHC"/>
+                            <constraint firstItem="eHb-PP-nYx" firstAttribute="top" secondItem="uX2-9j-pLx" secondAttribute="bottom" constant="319" id="nbx-Iy-2PD"/>
+                            <constraint firstItem="Zne-k5-yZN" firstAttribute="bottom" secondItem="eHb-PP-nYx" secondAttribute="top" id="re7-tq-zEw"/>
+                            <constraint firstItem="uX2-9j-pLx" firstAttribute="leading" secondItem="Zne-k5-yZN" secondAttribute="leading" constant="93" id="tIW-bM-03C"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Plq-j5-qbQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="774" y="1913"/>
         </scene>
         <!--Leader Board View Controller-->
         <scene sceneID="QrQ-cM-g4x">
@@ -184,4 +231,7 @@
             <point key="canvasLocation" x="1618" y="1167"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="confetti" width="960" height="640"/>
+    </resources>
 </document>

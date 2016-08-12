@@ -298,6 +298,7 @@
     
     NSString *message = [NSString stringWithFormat:@"%@ has completed the quest!", [PFUser currentUser].username];
     [self questPushNotification:message];
+    
 
 }
 
