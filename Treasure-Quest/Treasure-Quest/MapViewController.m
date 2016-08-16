@@ -21,6 +21,7 @@
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
 @property float angleToNextObjective;
 @property (strong, nonatomic) MKPinAnnotationView *userPin;
+@property (nonatomic) BOOL completed;
 
 @end
 
@@ -38,7 +39,8 @@
     [self.mapView setShowsBuildings:YES];
     [self.mapView setPitchEnabled:YES];
     [self.mapView setShowsPointsOfInterest:YES];
-
+    self.completed = NO;
+    
     UIBarButtonItem *anotherButton = [[UIBarButtonItem alloc] initWithTitle:@"XYZ" style:UIBarButtonSystemItemStop target:self action:@selector(completeButtonSelected:)];
 
     self.navigationItem.rightBarButtonItem = anotherButton;
@@ -410,10 +412,13 @@
 };
 
 -(void)WinnerFound{
-    
-    NSString *message = [NSString stringWithFormat:@"%@ has completed the quest!", [PFUser currentUser].username];
-    [self questPushNotification:message];
-    
+    if (!self.completed) {
+        
+        NSString *message = [NSString stringWithFormat:@"%@ has completed the quest!", [PFUser currentUser].username];
+        [self questPushNotification:message];
+        self.completed = YES;
+        
+    }
 
 }
 
