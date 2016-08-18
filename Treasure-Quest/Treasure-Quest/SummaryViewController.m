@@ -123,7 +123,7 @@
     quest[@"objectives"] = objectives;
     
     NSMutableArray *zeroArray = [[NSMutableArray alloc]init];
-    for (int index ; index < count ; index ++){
+    for (int index = 0 ; index < count ; index ++){
         [zeroArray addObject:@NO];
     }
     NSMutableArray *objectivesCompleted = [[NSMutableArray alloc]init];
