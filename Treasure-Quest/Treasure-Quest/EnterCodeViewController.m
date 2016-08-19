@@ -71,6 +71,7 @@
                                 
                                 [self.objectivesCompleted addObject:zeroArray ];
                                 [self.objectivesMessaged addObject:zeroArray];
+                                NSLog(@"Added player, completed, messaged for %@", [PFUser currentUser].username );
                             } else {
                                 [self alert:@"Game is Full" message:@"The game you are trying to join is full, please create a new one."];
                                 return;
@@ -79,6 +80,8 @@
                         
                         PFObject *updateQuest = [PFObject objectWithoutDataWithClassName:@"Quest" objectId:quest.objectId];
                         updateQuest[@"players"] = self.players;
+                        updateQuest[@"objectivesCompleted"] = self.objectivesCompleted;
+                        updateQuest[@"objectivesMessaged"] = self.objectivesMessaged;
                         [[PFUser currentUser]setObject:quest.objectId forKey:@"currentQuestId"];
                         [[PFUser currentUser] saveInBackground];
 
@@ -88,7 +91,7 @@
                         [updateQuest saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
                                 if(!error) {
                                     WaitPageViewController *viewController = [[UIStoryboard storyboardWithName:@"Waiting" bundle:nil] instantiateViewControllerWithIdentifier:@"waitingStoryboard"];
-                                    NSLog(@"Saved successfully");
+                                    NSLog(@"Saved successfully @ enter code");
                                     [spinner stopAnimating];
                                     viewController.gameCode = self.codeTextField.text;
                                     viewController.questName = self.questName;

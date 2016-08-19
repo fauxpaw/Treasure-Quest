@@ -50,6 +50,14 @@
     
     PFQuery *query= [PFQuery queryWithClassName:@"Quest"];
     [query whereKey:@"objectId" equalTo:[[PFUser currentUser] objectForKey:@"currentQuestId"]];
+//    [query includeKey:@"objectives"];
+//    [query includeKey:@"objectivesCompleted"];
+    
+//    
+//    PFQuery *testQuery = [PFQuery queryWithClassName:@"Quest"];
+//    Quest *testObject = [testQuery getObjectWithId:[[PFUser currentUser] objectForKey:@"currentQuestId"]];
+//    
+    
     
     NSLog(@"current quest: %@", [[PFUser currentUser] objectForKey:@"currentQuestId"]);
     __weak typeof (self) weakSelf = self;
@@ -58,31 +66,58 @@
         if (!error){
             [[NSOperationQueue mainQueue] addOperationWithBlock:^{
                 __strong typeof(weakSelf) strongSelf = weakSelf;
-                for (Quest *quest in objects)
+                for (PFObject *pfquest in objects)
                 {
-                    NSLog(@"questname %@", quest.name);
-//                    
-                    NSNumber *playerNumber = [NSNumber numberWithInt:(int)([quest.players indexOfObject:[PFUser currentUser].objectId])];
-
                     
-                   for (Objective *objective in quest.objectives[playerNumber.intValue]){
-                       
-                       [objective fetchIfNeeded];
+//                    NSLog(@"objectives: %@",[pfquest valueForKey:@"objectives"]);
+//                    NSLog(@"objectivesCompleted: %@lu",[pfquest valueForKey:@"objectivesCompleted"]);
+//                   [pfquest fetch];
+                    Quest *myQuest = [[Quest alloc] init];
+                    myQuest = (Quest*)pfquest;
+//                 
+//                    
+//                    NSString *questName = myQuest.name;
+//                    NSMutableArray *players = myQuest.players;
+//                    NSMutableArray *objectivesCompleted = myQuest.objectivesCompleted;
+//                    NSMutableArray *objectivesMessaged = myQuest.objectivesMessaged;
+//                    
+//                    NSLog(@"questname %@", myQuest.name);
+//                    NSLog(@"objectives %lu", (unsigned long)objectivesCompleted.count);
+//                    NSLog(@"objectives %lu", (unsigned long)objectivesMessaged.count);
+
+//
+                    NSNumber *playerNumber = [NSNumber numberWithInt:(int)([myQuest.players indexOfObject:[PFUser currentUser].objectId])];
+
+//
+                    PFQuery *query2 = [PFQuery queryWithClassName:@"Objective"];
+                    
+                   for (PFObject *pfobject in myQuest.objectives[playerNumber.intValue]){
+                       [pfobject fetchIfNeeded];
+                       Objective *objective = [[Objective alloc]init];
+                       objective = (Objective*)pfobject;
                         NSLog(@"%@", objective.name);
                        [strongSelf.objectivesDisplayed addObject:objective];
-                        NSLog(@"%lu", (unsigned long) quest.objectives.count);
-                        [strongSelf.tableView reloadData];
-                       
                     }
+                    [strongSelf.tableView reloadData];
                     
+//                    for (PFObject *pfobject in myQuest.objectivesCompleted[playerNumber.intValue]){
+//                        [pfobject fetchIfNeeded];
+//                        Objective *objective = [[Objective alloc]init];
+//                        objective = (Objective*)pfobject;
+//                        NSLog(@"%@", objective.name);
+//                        [strongSelf.objectivesCompleted addObject:objective];
+//                    }
+//                    [strongSelf.tableView reloadData];
 
-                    strongSelf.objectivesCompleted = quest.objectivesCompleted[playerNumber.intValue];
-                    strongSelf.objectivesMessaged = quest.objectivesMessaged[playerNumber.intValue];
+                    strongSelf.objectivesCompleted = myQuest.objectivesCompleted[playerNumber.intValue];
+                    strongSelf.objectivesMessaged = myQuest.objectivesMessaged[playerNumber.intValue];
 
-                    ((TabBarViewController *)self.parentViewController).currentQuest = quest;
+                    ((TabBarViewController *)self.parentViewController).currentQuest = myQuest;
                     // I think this was our crash here - overwriting and array of arrays with an array...
 //                    ((TabBarViewController *)self.parentViewController).currentQuest.objectives = strongSelf.objectivesDisplayed;
                     ((TabBarViewController *)self.parentViewController).currentObjective = strongSelf.objectivesDisplayed[0];
+                    
+                    
                     [self setupPushChannelForQuest];
                 }
             }];

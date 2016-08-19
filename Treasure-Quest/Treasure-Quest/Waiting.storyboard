@@ -319,7 +319,7 @@
         <!--PlayVC-->
         <scene sceneID="ezE-xg-x1U">
             <objects>
-                <viewControllerPlaceholder storyboardName="Join" referencedIdentifier="PlayVC" id="ari-cm-KGh" sceneMemberID="viewController"/>
+                <viewControllerPlaceholder storyboardName="Play" referencedIdentifier="PlayVC" id="ari-cm-KGh" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TZM-Gt-rPP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1106.5" y="804"/>

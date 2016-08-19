@@ -164,7 +164,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ilp-Pi-YrV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1665" y="-432"/>
+            <point key="canvasLocation" x="1202" y="58"/>
         </scene>
         <!--Tab Bar View Controller-->
         <scene sceneID="UST-MY-ZTt">
@@ -179,6 +179,7 @@
                         <segue destination="T8t-l2-98F" kind="relationship" relationship="viewControllers" id="3uQ-mw-l4S"/>
                         <segue destination="26P-hV-pd3" kind="relationship" relationship="viewControllers" id="k92-4f-sr3"/>
                         <segue destination="Eih-H2-GUE" kind="relationship" relationship="viewControllers" id="yiS-vC-m25"/>
+                        <segue destination="ETA-WN-YQb" kind="relationship" relationship="viewControllers" id="2hU-fL-aYj"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nzS-Tc-Hex" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -223,7 +224,6 @@
     <resources>
         <image name="confetti" width="960" height="640"/>
         <image name="crown" width="32" height="32"/>
-        <image name="heart" width="36" height="36"/>
         <image name="list" width="34" height="38"/>
         <image name="star" width="32" height="37"/>
     </resources>

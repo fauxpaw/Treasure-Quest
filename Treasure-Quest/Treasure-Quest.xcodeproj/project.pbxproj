@@ -26,7 +26,7 @@
 		4C7D760F1D533D5200932D3A /* Parse.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4C7D76081D533CDE00932D3A /* Parse.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		4C7D76111D534C6D00932D3A /* ParseUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C7D76101D534C6D00932D3A /* ParseUI.framework */; };
 		4C7D76121D534D5600932D3A /* ParseUI.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4C7D76101D534C6D00932D3A /* ParseUI.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		4C7D76141D53F5E400932D3A /* Join.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4C7D76131D53F5E400932D3A /* Join.storyboard */; };
+		4C7D76141D53F5E400932D3A /* Play.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4C7D76131D53F5E400932D3A /* Play.storyboard */; };
 		4C7D76171D53FA1700932D3A /* ProgressListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C7D76161D53FA1700932D3A /* ProgressListViewController.m */; };
 		4C7D761C1D53FD8B00932D3A /* Quest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C7D761B1D53FD8B00932D3A /* Quest.m */; };
 		4C7D761F1D5400A900932D3A /* Player.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C7D761E1D5400A900932D3A /* Player.m */; };
@@ -91,7 +91,7 @@
 		4C7D76071D533CDE00932D3A /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bolts.framework; path = Carthage/Build/iOS/Bolts.framework; sourceTree = "<group>"; };
 		4C7D76081D533CDE00932D3A /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Parse.framework; path = Carthage/Build/iOS/Parse.framework; sourceTree = "<group>"; };
 		4C7D76101D534C6D00932D3A /* ParseUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseUI.framework; sourceTree = "<group>"; };
-		4C7D76131D53F5E400932D3A /* Join.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Join.storyboard; sourceTree = "<group>"; };
+		4C7D76131D53F5E400932D3A /* Play.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Play.storyboard; sourceTree = "<group>"; };
 		4C7D76151D53FA1700932D3A /* ProgressListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProgressListViewController.h; sourceTree = "<group>"; };
 		4C7D76161D53FA1700932D3A /* ProgressListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgressListViewController.m; sourceTree = "<group>"; };
 		4C7D761A1D53FD8B00932D3A /* Quest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Quest.h; sourceTree = "<group>"; };
@@ -347,7 +347,7 @@
 		4C7D76311D55276200932D3A /* View */ = {
 			isa = PBXGroup;
 			children = (
-				4C7D76131D53F5E400932D3A /* Join.storyboard */,
+				4C7D76131D53F5E400932D3A /* Play.storyboard */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -430,7 +430,7 @@
 			files = (
 				4C7D76001D53389D00932D3A /* LaunchScreen.storyboard in Resources */,
 				4C7D75FD1D53389D00932D3A /* Assets.xcassets in Resources */,
-				4C7D76141D53F5E400932D3A /* Join.storyboard in Resources */,
+				4C7D76141D53F5E400932D3A /* Play.storyboard in Resources */,
 				4C7D75FB1D53389D00932D3A /* Main.storyboard in Resources */,
 				048DB94F1D553B0700604726 /* Waiting.storyboard in Resources */,
 			);

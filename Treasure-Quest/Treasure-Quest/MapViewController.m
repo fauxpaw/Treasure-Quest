@@ -218,6 +218,8 @@
     NSUInteger index = 0;
     ((TabBarViewController *)self.parentViewController).currentObjective.completed = YES;
 //    Quest *quest = ((TabBarViewController *)self.parentViewController).currentQuest;
+    
+    [((TabBarViewController *)self.parentViewController).currentQuest fetch];
 
     NSNumber *playerNumber = [NSNumber numberWithInt:(int)([((TabBarViewController *)self.parentViewController).currentQuest.players indexOfObject:[PFUser currentUser].objectId])];
 
@@ -271,19 +273,21 @@
     NSLog(@"saving Objective: %@", ((TabBarViewController *)self.parentViewController).currentObjective.objectId);
         [((TabBarViewController *)self.parentViewController).currentObjective save];
     
+    
+    
     // Let's save it in the new way
     [objectivesCompleted replaceObjectAtIndex:index withObject:@YES];
     [((TabBarViewController *)self.parentViewController).currentQuest.objectivesCompleted replaceObjectAtIndex:playerNumber.intValue withObject:objectivesCompleted];
     
     NSLog(@"completedArray: %@", [((TabBarViewController *)self.parentViewController).currentQuest.objectivesCompleted objectAtIndex:playerNumber.intValue]);
+    NSLog(@"Full Array: %@", ((TabBarViewController *)self.parentViewController).currentQuest.objectivesCompleted);
 
-    
     [((TabBarViewController *)self.parentViewController).currentQuest save];
     
     PFObject *updateQuest = [PFObject objectWithoutDataWithClassName:@"Quest" objectId:[[PFUser currentUser] objectForKey:@"currentQuestId"]];
     
     NSMutableArray *allObjectivesCompleted = [[NSMutableArray alloc]init];
-//    allObjectivesCompleted = ((TabBarViewController *)self.parentViewController).currentQuest.objectivesCompleted;
+    allObjectivesCompleted = ((TabBarViewController *)self.parentViewController).currentQuest.objectivesCompleted;
     
     
     updateQuest[@"objectivesCompleted"] = allObjectivesCompleted;

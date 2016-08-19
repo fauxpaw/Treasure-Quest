@@ -119,6 +119,8 @@
                             
                             [objectivesCompleted addObject:zeroArray ];
                             [objectivesMessaged addObject:zeroArray];
+                            NSLog(@"Added player, completed, messaged for %@", [PFUser currentUser].username );
+
                         }
                         
                         PFObject *updateQuest = [PFObject objectWithoutDataWithClassName:@"Quest" objectId:quest.objectId];
@@ -136,7 +138,7 @@
                                 if(!error) {
                                     UINavigationController *navigationController = (UINavigationController *)self.window.rootViewController;
                                     WaitPageViewController *viewController = [[UIStoryboard storyboardWithName:@"Waiting" bundle:nil] instantiateViewControllerWithIdentifier:@"waitingStoryboard"];
-                                    NSLog(@"Saved successfully");
+                                    NSLog(@"Saved successfully @ app delegate");
                                     viewController.gameCode = [url query];
                                     viewController.questName = questName;
                                     
