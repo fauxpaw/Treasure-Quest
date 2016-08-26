@@ -20,6 +20,12 @@ if (process.env.APNS_ENABLE) {
 
       bundleId: 'com.derekgraham.treasurequest',  // change to match bundleId
       production: false // dev certificate
+    },
+    {
+      pfx: 'MichaelTreasureQuest-Cert.p12', // P12 file only
+
+      bundleId: 'com.sweeney.treasurequest',  // change to match bundleId
+      production: false // dev certificate
     }
   ];
 }
