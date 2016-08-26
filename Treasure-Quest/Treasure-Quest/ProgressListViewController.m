@@ -140,7 +140,18 @@
 //    [objective fetchIfNeeded];
 //    NSLog(@"Objective name: %@", self.objectivesCompleted[indexPath.row]);
     
-    if ( [self.objectivesCompleted[indexPath.row] boolValue]){
+    NSNumber *playerNumber = [NSNumber numberWithInt:(int)([((TabBarViewController *)self.parentViewController).currentQuest.players indexOfObject:[PFUser currentUser].objectId])];
+    
+    
+//    if (  [self.objectivesCompleted[playerNumber] [indexPath.row] boolValue ] ){
+//        cell.textLabel.text = [NSString stringWithFormat:@"✓ %@",objective.category];
+//    } else {
+//        cell.textLabel.text = objective.category;
+//    }
+
+//    if ( [self.objectivesCompleted[playerNumber.intValue][indexPath.row] boolValue]){
+
+    if ( [self.objectivesCompleted[indexPath.row] boolValue]) {
         cell.textLabel.text = [NSString stringWithFormat:@"✓ %@",objective.category];
     } else {
         cell.textLabel.text = objective.category;
