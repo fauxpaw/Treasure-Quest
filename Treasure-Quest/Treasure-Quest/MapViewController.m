@@ -303,6 +303,8 @@
         }];
     }];
 
+    
+    [(ProgressListViewController *)((TabBarViewController *)self.parentViewController).viewControllers.firstObject reloadCurrentObjectives];
 }
 
 -(void) setUpRegion: (Objective *)objective {

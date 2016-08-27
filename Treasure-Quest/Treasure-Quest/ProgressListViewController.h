@@ -18,6 +18,6 @@
 @property (strong, nonatomic) NSMutableArray *objectivesCompleted;
 @property (strong, nonatomic) NSMutableArray *objectivesMessaged;
 
-
+- (void) reloadCurrentObjectives;
 
 @end

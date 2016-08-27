@@ -38,8 +38,32 @@
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    [self.tableView reloadData];
+    [self reloadCurrentObjectives];
+//    [self.tableView reloadData];
     
+}
+
+- (void) reloadCurrentObjectives {
+    
+    __weak typeof (self) weakSelf = self;
+
+    [((TabBarViewController *)self.parentViewController).currentQuest fetchIfNeededInBackgroundWithBlock:^(PFObject * _Nullable object, NSError * _Nullable error) {
+        __strong typeof(weakSelf) strongSelf = weakSelf;
+        
+        NSNumber *playerNumber = [NSNumber numberWithInt:(int)([((TabBarViewController *)strongSelf.parentViewController).currentQuest.players indexOfObject:[PFUser currentUser].objectId])];
+
+        strongSelf.objectivesCompleted = ((Quest *)object).objectivesCompleted[playerNumber.intValue];
+
+
+        NSLog(@"Done fetching currentquest in background");
+        NSLog(@"quest object: %@", object);
+        [strongSelf.tableView reloadData];
+    }];
+    
+    
+//    PFQuery *query= [PFQuery queryWithClassName:@"Quest"];
+//    [query whereKey:@"objectId" equalTo:[[PFUser currentUser] objectForKey:@"currentQuestId"]];
+//
 }
 
 -(void) setup {
@@ -66,6 +90,8 @@
         if (!error){
             [[NSOperationQueue mainQueue] addOperationWithBlock:^{
                 __strong typeof(weakSelf) strongSelf = weakSelf;
+                NSAssert([objects count] == 1, @"We should get exactly 1 query result here");
+                // user .firstobject instead of for loop.
                 for (PFObject *pfquest in objects)
                 {
                     
@@ -153,6 +179,7 @@
 
     if ( [self.objectivesCompleted[indexPath.row] boolValue]) {
         cell.textLabel.text = [NSString stringWithFormat:@"✓ %@",objective.category];
+        cell.detailTextLabel.text = [NSString stringWithFormat:@"%@",objective.name];
     } else {
         cell.textLabel.text = objective.category;
     }

@@ -48,6 +48,8 @@
     spinner.tag = 12;
     [spinner startAnimating];
     PFQuery *query= [PFQuery queryWithClassName:@"Quest"];
+    [query whereKey:@"objectId" equalTo:self.codeTextField.text];
+    // step through to make sure this is working
     [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
         if (!error){
             [[NSOperationQueue mainQueue] addOperationWithBlock:^{
